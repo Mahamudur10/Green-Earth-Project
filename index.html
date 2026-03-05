@@ -21,12 +21,12 @@
 </head>
 
 <body>
-    <main class="container mx-auto text-center">
-        <h2 class="text-[#4ade80] font-bold text-4xl">Choose Your Trees</h2>
+    <main class="container mx-auto">
+        <h2 class="text-[#4ade80] font-bold text-4xl text-center">Choose Your Trees</h2>
         <div class="grid grid-cols-12 gap-8">
             <!-- catagories -->
             <div class="bg-white card card-body shadow-2xl rounded-xl col-span-3">
-                <h2 class="font-bold text-2xl">Categories</h2>
+                <h2 class="font-bold text-2xl text-center">Categories</h2>
                 <div>
                     <button class="btn btn-success w-full mb-4" id="allTreesbtn">All Trees</button>
                     <!-- Categories Container -->
@@ -36,11 +36,18 @@
                 </div>
             </div>
             <!-- Trees -->
-            <div class="bg-green-400 col-span-6">
-                Trees
+            <div class="bg-white card card-body shadow-2xl rounded-xl col-span-6">
+                <div id="treesContainer" class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+
+                    <!-- dynamecally added here -->
+
+
+                </div>
             </div>
+
+
             <!-- cart -->
-            <div class="bg-red-400 col-span-3">
+            <div class="bg-white card card-body shadow-2xl rounded-xl col-span-3">
                 Cart
             </div>
         </div>
