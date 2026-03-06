@@ -1,13 +1,16 @@
 const categoriesContainer = document.getElementById("categoriesContainer");
 const treesContainer = document.getElementById("treesContainer");
+const loadingSpinner = document.getElementById("loadingSpinner");
+
+function showLoading() {
+    loadingSpinner.classList.remove("hidden");
+    treesContainer.innerHTML = "";
+}
+function hideLoading() {
+    loadingSpinner.classList.add("hidden");
+}
 
 async function loadCategories() {
-    // fetch("https://openapi.programming-hero.com/api/categories")
-    //     .then((res) => res.json())
-    //     .then((data) => {
-    //         console.log(data);
-    //     })
-    //     .catch((e) => console.log(e));
 
     // async await
     const res = await fetch("https://openapi.programming-hero.com/api/categories",);
@@ -26,8 +29,11 @@ async function loadCategories() {
 
 }
 async function loadTrees() {
+
+    showLoading();
     const res = await fetch("https://openapi.programming-hero.com/api/plants");
     const data = await res.json();
+    hideLoading();
     displayTrees(data.plants);
 }
 function displayTrees(trees) {
