@@ -1,6 +1,7 @@
 const categoriesContainer = document.getElementById("categoriesContainer");
 const treesContainer = document.getElementById("treesContainer");
 const loadingSpinner = document.getElementById("loadingSpinner");
+const allTreesbtn = document.getElementById("allTreesbtn");
 
 function showLoading() {
     loadingSpinner.classList.remove("hidden");
@@ -24,10 +25,44 @@ async function loadCategories() {
         const btn = document.createElement("button");
         btn.className = "btn btn-outline w-full";
         btn.textContent = category.category_name;
+        btn.onclick = () => selectCategory(category.id, btn);
         categoriesContainer.appendChild(btn);
     });
 
 }
+async function selectCategory(categoryId, btn) {
+    console.log(categoryId, btn);
+    showLoading();
+    // Update active button style
+    const allButtons = document.querySelectorAll("#categoriesContainer button, #allTreesbtn");
+    console.log(allButtons);
+    allButtons.forEach((btn) => {
+        btn.classList.remove("btn-primary");
+        btn.classList.add("btn-outline");
+    });
+    btn.classList.add("btn-primary");
+    btn.classList.remove("btn-outline");
+
+    const res = await fetch(`https://openapi.programming-hero.com/api/category/${categoryId}`);
+    const data = await res.json();
+    console.log(data);
+    displayTrees(data.plants);
+    hideLoading();
+}
+
+allTreesbtn.addEventListener("click", () => {
+    // Update active button style
+    const allButtons = document.querySelectorAll("#categoriesContainer button, #allTreesbtn");
+    console.log(allButtons);
+    allButtons.forEach((btn) => {
+        btn.classList.remove("btn-primary");
+        btn.classList.add("btn-outline");
+    });
+    allTreesbtn.classList.add("btn-primary");
+    allTreesbtn.classList.remove("btn-outline");
+    loadTrees();
+})
+
 async function loadTrees() {
 
     showLoading();
